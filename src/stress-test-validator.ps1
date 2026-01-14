@@ -18,10 +18,10 @@ while ($true)
         Write-Host "`nMISMATCH DETECTED"
         Write-Host "===== INPUT ====="
         Get-Content "$testDir/input.txt"
-        Write-Host "`n===== SOLUTION ====="
-        Get-Content "$testDir/sol.txt"
         Write-Host "`n===== BRUTE ====="
         Get-Content "$testDir/brute.txt"
+        Write-Host "`n===== SOLUTION ====="
+        Get-Content "$testDir/sol.txt"
         Write-Host "`n===== VERDICT ====="
         Get-Content "$testDir/verdict.txt"
         break
