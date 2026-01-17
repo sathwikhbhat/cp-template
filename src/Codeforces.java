@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-import static java.lang.Math.*;
-
 public class Codeforces {
     static final long MOD = 1_000_000_007;
     static final int MAX = 200_005;
@@ -131,7 +129,7 @@ public class Codeforces {
         if (n % 2 == 0)
             return false;
 
-        for (int i = 3; i * i <= n; i += 2)
+        for (int i = 3; (long) i * i <= n; i += 2)
             if ((n % i) == 0)
                 return false;
 
@@ -146,6 +144,24 @@ public class Codeforces {
                         spf[j] = i;
     }
 
+    static long min(long... vals) {
+        long res = vals[0];
+
+        for (long v : vals)
+            res = Math.min(res, v);
+
+        return res;
+    }
+
+    static long max(long... vals) {
+        long res = vals[0];
+
+        for (long v : vals)
+            res = Math.max(res, v);
+
+        return res;
+    }
+
     static void print(Object o) {
         out.print(o);
     }
@@ -155,29 +171,32 @@ public class Codeforces {
     }
 
     static void print(int[] a) {
-        for (int i = 0; i < a.length; i++) {
-            out.print(a[i]);
-            if (i < a.length - 1)
-                out.print(" ");
-        }
+        for (int x : a)
+            out.print(x + " ");
+
         out.println();
     }
 
     static void print(long[] a) {
-        for (int i = 0; i < a.length; i++) {
-            out.print(a[i]);
-            if (i < a.length - 1)
-                out.print(" ");
-        }
+        for (long x : a)
+            out.print(x + " ");
+
         out.println();
     }
 
-    static void print(List<?> a) {
-        for (int i = 0; i < a.size(); i++) {
-            out.print(a.get(i));
-            if (i < a.size() - 1)
-                out.print(" ");
-        }
+    static void print(Collection<?> c) {
+        for (Object x : c)
+            out.print(x + " ");
+
+        out.println();
+    }
+
+    static void print(PriorityQueue<?> pq) {
+        PriorityQueue<?> copy = new PriorityQueue<>(pq);
+
+        while (!copy.isEmpty())
+            out.print(copy.poll() + " ");
+
         out.println();
     }
 
