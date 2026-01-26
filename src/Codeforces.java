@@ -144,6 +144,40 @@ public class Codeforces {
                         spf[j] = i;
     }
 
+    static void reverse(int[] arr, int l, int r) {
+        while (l < r) {
+            int temp = arr[l];
+            arr[l++] = arr[r];
+            arr[r--] = temp;
+        }
+    }
+
+    static void reverse(long[] arr, int l, int r) {
+        while (l < r) {
+            long temp = arr[l];
+            arr[l++] = arr[r];
+            arr[r--] = temp;
+        }
+    }
+
+    static int min(int... vals) {
+        int res = vals[0];
+
+        for (int v : vals)
+            res = Math.min(res, v);
+
+        return res;
+    }
+
+    static int max(int... vals) {
+        int res = vals[0];
+
+        for (int v : vals)
+            res = Math.max(res, v);
+
+        return res;
+    }
+
     static long min(long... vals) {
         long res = vals[0];
 
