@@ -145,19 +145,36 @@ public class Codeforces {
     }
 
     static void reverse(int[] arr, int l, int r) {
-        while (l < r) {
-            int temp = arr[l];
-            arr[l++] = arr[r];
-            arr[r--] = temp;
-        }
+        while (l < r)
+            swap(arr, l++, r--);
     }
 
     static void reverse(long[] arr, int l, int r) {
-        while (l < r) {
-            long temp = arr[l];
-            arr[l++] = arr[r];
-            arr[r--] = temp;
-        }
+        while (l < r)
+            swap(arr, l++, r--);
+    }
+
+    static void reverse(char[] arr, int l, int r) {
+        while (l < r)
+            swap(arr, l++, r--);
+    }
+
+    static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    static void swap(long[] arr, int i, int j) {
+        long temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    static void swap(char[] arr, int i, int j) {
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
     static int min(int... vals) {
