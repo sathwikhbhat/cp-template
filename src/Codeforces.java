@@ -72,6 +72,10 @@ public class Codeforces {
         return a;
     }
 
+    static char[] nca() throws IOException {
+        return ns().toCharArray();
+    }
+
     static long gcd(long a, long b) {
         if (b == 0)
             return a;
