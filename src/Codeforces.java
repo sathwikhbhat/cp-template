@@ -3,11 +3,11 @@ import java.util.*;
 
 public class Codeforces {
     static final long MOD = 1_000_000_007;
-    static final int MAX = 200_005;
+    static final int SIEVE_LIMIT = 200_005;
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
     static PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
-    static int[] spf = new int[MAX];
+    static int[] spf = new int[SIEVE_LIMIT];
 
     public static void main(String[] args) throws IOException {
         int t = ni();
@@ -137,9 +137,9 @@ public class Codeforces {
     }
 
     static void sieve() {
-        for (int i = 2; i < MAX; i++)
+        for (int i = 2; i < SIEVE_LIMIT; i++)
             if (spf[i] == 0)
-                for (int j = i; j < MAX; j += i)
+                for (int j = i; j < SIEVE_LIMIT; j += i)
                     if (spf[j] == 0)
                         spf[j] = i;
     }
