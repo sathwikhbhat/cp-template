@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Codeforces {
+public class Main {
     static final long MOD = 1_000_000_007;
     static final int SIEVE_LIMIT = 200_005;
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

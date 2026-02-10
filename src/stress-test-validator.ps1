@@ -1,4 +1,4 @@
-javac -d ../out Codeforces.java Brute.java Generator.java Validator.java
+javac -d ../out Main.java Brute.java Generator.java Validator.java
 
 $testDir = "../out/tests"
 New-Item -ItemType Directory -Force -Path $testDir | Out-Null
@@ -7,7 +7,7 @@ while ($true)
 {
     java -cp ../out Generator | Out-File "$testDir/input.txt"
 
-    Get-Content "$testDir/input.txt" | java -cp ../out Codeforces | Out-File "$testDir/sol.txt"
+    Get-Content "$testDir/input.txt" | java -cp ../out Main | Out-File "$testDir/sol.txt"
 
     Get-Content "$testDir/input.txt" | java -cp ../out Brute | Out-File "$testDir/brute.txt"
 

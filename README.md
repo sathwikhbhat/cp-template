@@ -1,11 +1,11 @@
 # CP Template
 
 ## Files
-- `Codeforces.java`: Main optimized solution
+- `Main.java`: Main optimized solution
 - `Brute.java`: Slow but guaranteed correct solution
 - `Generator.java`: Generates random test cases for stress testing
 - `Validator.java`: Custom logic to validate output (used by `stress-validator.ps1`)
-- `stress-diff.ps1`: PowerShell script to compare output between `Codeforces.java` and `Brute.java` directly
+- `stress-diff.ps1`: PowerShell script to compare output between `Main.java` and `Brute.java` directly
 - `stress-validator.ps1`: PowerShell script to validate the solution's output using `Validator.java`
 
 ## Usage
