@@ -10,7 +10,8 @@ public class Main {
     static int[] spf = new int[SIEVE_LIMIT];
 
     public static void main(String[] args) throws IOException {
-        int t = ni();
+        int t = 1;
+        t = ni();
 
         while (t-- > 0)
             solve();
