@@ -9,6 +9,9 @@
 - `stress-test-validator.sh`: Bash script to validate the solution's output using `Validator.java`
 
 ## Usage
+
+### Stress Testing
+
 1. Open a terminal in the `src` folder
 2. Run a stress test:
    - For direct comparison:
@@ -23,3 +26,7 @@
 
 > **Note:** Run `chmod +x stress-test-diff.sh stress-test-validator.sh` once to make the scripts executable.
 > The scripts automatically compile your Java files into the `out` folder before running.
+
+### Using Code Snippets
+
+See [SNIPPETS.md](SNIPPETS.md) for a guide on how to use the template and reusable code utilities.
