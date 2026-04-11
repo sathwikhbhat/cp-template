@@ -1,16 +1,17 @@
 import java.io.*;
 import java.util.*;
+
 import static java.lang.Math.*;
 
 public class Main {
     static final long MOD = 1_000_000_007;
     static final int SIEVE_LIMIT = 200_005;
 
+    static int[] spf = new int[SIEVE_LIMIT];
+
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
     static PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
-
-    static int[] spf = new int[SIEVE_LIMIT];
 
     public static void main(String[] args) throws IOException {
         int t = ni();
@@ -24,7 +25,7 @@ public class Main {
     // ============================ SOLUTION START ============================
 
     static void solve() throws IOException {
-        
+
     }
 
     // ============================= SOLUTION END =============================
@@ -116,7 +117,7 @@ public class Main {
         return (a * b) % MOD;
     }
 
-    static long power(long a, long b) {
+    static long modPower(long a, long b) {
         long res = 1;
         long base = a % MOD;
         while (b > 0) {
@@ -129,7 +130,7 @@ public class Main {
     }
 
     static long modInverse(long a) {
-        return power(a, MOD - 2);
+        return modPower(a, MOD - 2);
     }
 
     // ------------------- NUMBER THEORY -------------------
