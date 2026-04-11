@@ -1,36 +1,38 @@
 import java.io.*;
 import java.util.*;
+import static java.lang.Math.*;
 
 public class Main {
     static final long MOD = 1_000_000_007;
     static final int SIEVE_LIMIT = 200_005;
+
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
     static PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
+
     static int[] spf = new int[SIEVE_LIMIT];
 
     public static void main(String[] args) throws IOException {
-        int t = 1;
-        t = ni();
+        int t = ni();
 
         while (t-- > 0)
             solve();
 
-        out.flush();
+        flush();
     }
 
-// ============================ SOLUTION START ============================
+    // ============================ SOLUTION START ============================
 
     static void solve() throws IOException {
-
+        
     }
 
-// ============================= SOLUTION END =============================
+    // ============================= SOLUTION END =============================
 
+    // ------------------- INPUT -------------------
     static String ns() throws IOException {
         while (st == null || !st.hasMoreTokens())
             st = new StringTokenizer(br.readLine());
-
         return st.nextToken();
     }
 
@@ -48,28 +50,22 @@ public class Main {
 
     static int[] nia(int n) throws IOException {
         int[] a = new int[n];
-
         for (int i = 0; i < n; i++)
             a[i] = ni();
-
         return a;
     }
 
     static long[] nla(int n) throws IOException {
         long[] a = new long[n];
-
         for (int i = 0; i < n; i++)
             a[i] = nl();
-
         return a;
     }
 
     static double[] nda(int n) throws IOException {
         double[] a = new double[n];
-
         for (int i = 0; i < n; i++)
             a[i] = nd();
-
         return a;
     }
 
@@ -77,78 +73,92 @@ public class Main {
         return ns().toCharArray();
     }
 
+    // ------------------- MATH -------------------
     static long gcd(long a, long b) {
-        if (b == 0)
-            return a;
-
-        return gcd(b, a % b);
+        return b == 0 ? a : gcd(b, a % b);
     }
 
     static long lcm(long a, long b) {
         return a / gcd(a, b) * b;
     }
 
-    static long add(long a, long b) {
-        a += b;
+    static boolean isPow2(long x) {
+        return x > 0 && (x & (x - 1)) == 0;
+    }
 
+    static long ceilPow2(long x) {
+        if (x <= 1)
+            return 1;
+        return 1L << (64 - Long.numberOfLeadingZeros(x - 1));
+    }
+
+    static long floorPow2(long x) {
+        if (x <= 0)
+            return 0;
+        return 1L << (63 - Long.numberOfLeadingZeros(x));
+    }
+
+    static long modAdd(long a, long b) {
+        a += b;
         if (a >= MOD)
             a -= MOD;
-
         return a;
     }
 
-    static long sub(long a, long b) {
+    static long modSub(long a, long b) {
         a -= b;
-
         if (a < 0)
             a += MOD;
-
         return a;
     }
 
-    static long mul(long a, long b) {
+    static long modProd(long a, long b) {
         return (a * b) % MOD;
     }
 
     static long power(long a, long b) {
         long res = 1;
         long base = a % MOD;
-
         while (b > 0) {
-            if ((b & 1L) == 1L)
-                res = (res * base) % MOD;
-            base = (base * base) % MOD;
+            if ((b & 1) == 1)
+                res = modProd(res, base);
+            base = modProd(base, base);
             b >>= 1;
         }
-
         return res;
     }
 
+    static long modInverse(long a) {
+        return power(a, MOD - 2);
+    }
+
+    // ------------------- NUMBER THEORY -------------------
     static boolean isPrime(int n) {
         if (n <= 1)
             return false;
-
         if (n == 2)
             return true;
-
         if (n % 2 == 0)
             return false;
-
         for (int i = 3; (long) i * i <= n; i += 2)
-            if ((n % i) == 0)
+            if (n % i == 0)
                 return false;
-
         return true;
     }
 
     static void sieve() {
-        for (int i = 2; i < SIEVE_LIMIT; i++)
-            if (spf[i] == 0)
-                for (int j = i; j < SIEVE_LIMIT; j += i)
-                    if (spf[j] == 0)
-                        spf[j] = i;
+        for (int i = 2; i < SIEVE_LIMIT; i++) {
+            if (spf[i] == 0) {
+                spf[i] = i;
+                for (long j = (long) i * i; j < SIEVE_LIMIT; j += i) {
+                    if (spf[(int) j] == 0)
+                        spf[(int) j] = i;
+                }
+            }
+        }
     }
 
+    // ------------------- ARRAY UTILITIES -------------------
     static void reverse(int[] arr, int l, int r) {
         while (l < r)
             swap(arr, l++, r--);
@@ -182,42 +192,89 @@ public class Main {
         arr[j] = temp;
     }
 
+    // ------------------- MIN / MAX -------------------
     static int min(int... vals) {
         int res = vals[0];
-
         for (int v : vals)
             res = Math.min(res, v);
-
         return res;
     }
 
     static int max(int... vals) {
         int res = vals[0];
-
         for (int v : vals)
             res = Math.max(res, v);
-
         return res;
     }
 
     static long min(long... vals) {
         long res = vals[0];
-
         for (long v : vals)
             res = Math.min(res, v);
-
         return res;
     }
 
     static long max(long... vals) {
         long res = vals[0];
-
         for (long v : vals)
             res = Math.max(res, v);
-
         return res;
     }
 
+    // ------------------- BINARY SEARCH -------------------
+    static int lowerBound(int[] a, int x) {
+        int l = 0;
+        int r = a.length;
+        while (l < r) {
+            int m = (l + r) >>> 1;
+            if (a[m] >= x)
+                r = m;
+            else
+                l = m + 1;
+        }
+        return l;
+    }
+
+    static int lowerBound(long[] a, long x) {
+        int l = 0;
+        int r = a.length;
+        while (l < r) {
+            int m = (l + r) >>> 1;
+            if (a[m] >= x)
+                r = m;
+            else
+                l = m + 1;
+        }
+        return l;
+    }
+
+    static int upperBound(int[] a, int x) {
+        int l = 0;
+        int r = a.length;
+        while (l < r) {
+            int m = (l + r) >>> 1;
+            if (a[m] > x)
+                r = m;
+            else
+                l = m + 1;
+        }
+        return l;
+    }
+
+    static int upperBound(long[] a, long x) {
+        int l = 0;
+        int r = a.length;
+        while (l < r) {
+            int m = (l + r) >>> 1;
+            if (a[m] > x)
+                r = m;
+            else
+                l = m + 1;
+        }
+        return l;
+    }
+
+    // ------------------- OUTPUT -------------------
     static void print(Object o) {
         out.print(o);
     }
@@ -229,30 +286,25 @@ public class Main {
     static void print(int[] a) {
         for (int x : a)
             out.print(x + " ");
-
         out.println();
     }
 
     static void print(long[] a) {
         for (long x : a)
             out.print(x + " ");
-
         out.println();
     }
 
     static void print(Collection<?> c) {
         for (Object x : c)
             out.print(x + " ");
-
         out.println();
     }
 
     static void print(PriorityQueue<?> pq) {
         PriorityQueue<?> copy = new PriorityQueue<>(pq);
-
         while (!copy.isEmpty())
             out.print(copy.poll() + " ");
-
         out.println();
     }
 
@@ -261,19 +313,7 @@ public class Main {
             print(row);
     }
 
-    static void yes(Lang lang) {
-        if (lang == Lang.EN)
-            out.println("YES");
-        else
-            out.println("DA");
+    static void flush() {
+        out.flush();
     }
-
-    static void no(Lang lang) {
-        if (lang == Lang.EN)
-            out.println("NO");
-        else
-            out.println("NET");
-    }
-
-    enum Lang {EN, RU}
 }
