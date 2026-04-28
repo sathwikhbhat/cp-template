@@ -6,12 +6,10 @@ import static java.lang.Math.*;
 public class Main {
     static final long MOD = 1_000_000_007;
     static final int SIEVE_LIMIT = 200_005;
-
-    static int[] spf = new int[SIEVE_LIMIT];
-
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
     static PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
+    static int[] spf = new int[SIEVE_LIMIT];
 
     public static void main(String[] args) throws IOException {
         int t = ni();
@@ -114,7 +112,7 @@ public class Main {
     }
 
     static long modProd(long a, long b) {
-        return (a * b) % MOD;
+        return (a % MOD * b % MOD) % MOD;
     }
 
     static long modPower(long a, long b) {
