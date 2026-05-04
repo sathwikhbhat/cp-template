@@ -220,6 +220,20 @@ public class Main {
         return res;
     }
 
+    static double min(double... vals) {
+        double res = vals[0];
+        for (double v : vals)
+            res = Math.min(res, v);
+        return res;
+    }
+
+    static double max(double... vals) {
+        double res = vals[0];
+        for (double v : vals)
+            res = Math.max(res, v);
+        return res;
+    }
+
     // ------------------- BINARY SEARCH -------------------
     static int lowerBound(int[] a, int x) {
         int l = 0;
