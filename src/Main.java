@@ -73,6 +73,14 @@ public class Main {
     }
 
     // ------------------- MATH -------------------
+    static long sum(long n) {
+        return n * (n + 1) / 2;
+    }
+
+    static long rangeSum(long l, long r) {
+        return sum(r) - sum(l - 1);
+    }
+
     static long gcd(long a, long b) {
         return b == 0 ? a : gcd(b, a % b);
     }
